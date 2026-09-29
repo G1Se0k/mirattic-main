@@ -1,6 +1,10 @@
-# Mirattic
+<p align="center">
+  <img src="public/assets/mirattic-mark.svg" width="160" alt="Mirattic">
+</p>
 
-**함께 보고, 함께 일하는 곳.** — <https://mirattic.com>
+<h1 align="center">Mirattic</h1>
+
+<p align="center"><b>함께 보고, 함께 일하는 곳.</b> — <a href="https://mirattic.com">mirattic.com</a></p>
 
 Mirattic은 친구와 영상을 같은 순간에 보는 **Mirattic Sync**와, 팀이 이슈와 대화를 한곳에서 나누는 **Mirattic Flow**를 만든다.
 두 서비스는 **Mirattic 계정** 하나로 쓴다. 이 저장소는 그 입구인 mirattic.com 소개 페이지다.
@@ -9,24 +13,29 @@ Mirattic은 친구와 영상을 같은 순간에 보는 **Mirattic Sync**와, �
 
 | 서비스 | 주소 | 한 줄 소개 | 저장소 |
 |---|---|---|---|
-| Mirattic Sync | [sync.mirattic.com](https://sync.mirattic.com) | 친구와 같은 영상을 같은 초에 — 재생·일시정지·이동을 방 안 모두에게 맞추는 Chrome 확장 | `mirattic-sync` |
-| Mirattic Flow | [flow.mirattic.com](https://flow.mirattic.com) | 워크스페이스·프로젝트·이슈 관리와 실시간 채팅·알림을 한 화면에서 | [`MiratticFlow`](https://github.com/G1Se0k/MiratticFlow) |
-| Mirattic 계정 | [auth.mirattic.com](https://auth.mirattic.com) | 이메일·카카오·네이버 로그인, 기기·연동·탈퇴 관리 (OAuth 2.0 / OIDC) | `mirattic-auth` |
-| 소개 페이지 | [mirattic.com](https://mirattic.com) | 이 저장소 | `mirattic-main` |
+| <img src="public/assets/sync-logo.png" width="20" align="center"> Mirattic Sync | [sync.mirattic.com](https://sync.mirattic.com) | 친구와 같은 영상을 같은 초에 — 재생·일시정지·이동을 방 안 모두에게 맞추는 Chrome 확장 | `mirattic-sync` |
+| <img src="public/assets/flow-logo.png" width="20" align="center"> Mirattic Flow | [flow.mirattic.com](https://flow.mirattic.com) | 워크스페이스·프로젝트·이슈 관리와 실시간 채팅·알림을 한 화면에서 | [`MiratticFlow`](https://github.com/G1Se0k/MiratticFlow) |
+| <img src="public/assets/mirattic-mark.svg" width="20" align="center"> Mirattic 계정 | [auth.mirattic.com](https://auth.mirattic.com) | 이메일·카카오·네이버 로그인, 기기·연동·탈퇴 관리 (OAuth 2.0 / OIDC) | `mirattic-auth` |
+| <img src="public/assets/favicon-32.png" width="20" align="center"> 소개 페이지 | [mirattic.com](https://mirattic.com) | 이 저장소 | `mirattic-main` |
 
-### Mirattic Sync
+### <img src="public/assets/sync-logo.png" width="28" align="top"> Mirattic Sync
 - 방장이 재생하면 모두 재생 — 멈추고 넘기는 것도 모두의 화면이 따라간다
 - 영상은 각자 브라우저에서 재생한다. Mirattic은 재생 **메타데이터만** 동기화하고 영상·음성을 녹화하거나 중계하지 않는다
-- 영상 옆 사이드 패널에서 대화. YouTube 지원, Netflix·라프텔은 실험 단계
+- 영상 옆 사이드 패널에서 대화
 - Chrome 확장(WXT, MV3) + Spring Boot 서버, WebSocket으로 서버 시각 기준 동기화
 
-### Mirattic Flow
+| <img src="docs/icons/youtube.png" width="32"><br>YouTube | <img src="docs/icons/netflix.png" width="32"><br>Netflix | <img src="docs/icons/laftel.png" width="32"><br>라프텔 |
+|:---:|:---:|:---:|
+| 지원 | 실험 | 실험 |
+
+
+### <img src="public/assets/flow-logo.png" width="28" align="top"> Mirattic Flow
 - 워크스페이스 · 프로젝트 · 이슈 — 담당자, 우선순위, 마감일, 상태를 한눈에
 - 프로젝트 채팅과 이슈별 주제 채팅 — 이야기한 내용이 그 이슈에 남는다
 - 알림과 대시보드 — 내 담당과 진행 상황을 놓치지 않는다
 - Next.js + Spring Boot, STOMP over WebSocket
 
-### Mirattic 계정
+### <img src="public/assets/mirattic-mark.svg" width="28" align="top"> Mirattic 계정
 - 이메일, 카카오, 네이버 중 편한 방법으로 가입·로그인하고 Sync와 Flow에 같은 계정으로 들어간다
 - 비밀번호는 Mirattic 계정에서만 입력한다. 각 서비스는 비밀번호를 받지도, 저장하지도 않는다
 - 로그인된 기기, 최근 보안 활동, 탈퇴까지 계정 페이지에서 직접 관리한다
