@@ -11,17 +11,19 @@
 <link rel="icon" type="image/svg+xml" href="/assets/mirattic-mark.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<!-- Same palette, type and layout as sync.mirattic.com, so the family reads as one. -->
+<!-- Tokens from Mirattic/DESIGN .md (primary #2563eb, 12px radius, rounded buttons, elevated cards); dark values are ours. Shared with sync.mirattic.com. -->
 <style>
   :root {
-    --fg: #1c1c1e; --bg: #f7f7f5; --surface: #ffffff; --muted: #6f6f75; --line: #e6e5e1;
-    --strong: #1c1c1e; --on-strong: #ffffff; --shade: rgba(28, 28, 30, 0.08); --tint: #efeefb;
+    --fg: #191f28; --bg: #ffffff; --surface: #ffffff; --muted: #4e5968; --line: #e5e8eb;
+    --strong: #2563eb; --strong-hover: #1d4ed8; --on-strong: #ffffff; --weak-bg: #e8f3ff; --weak-fg: #1b64da;
+    --shade: rgba(0, 23, 51, 0.14); --tint: #e8f3ff; --radius: 12px;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --fg: #ececea; --bg: #171717; --surface: #202020; --muted: #9b9b98; --line: #2e2e2d;
-      --strong: #ececea; --on-strong: #171717; --shade: rgba(0, 0, 0, 0.4); --tint: #24233a;
+      --fg: #f2f4f6; --bg: #101318; --surface: #1a1e25; --muted: #b0b8c1; --line: #2c323b;
+      --strong: #2563eb; --strong-hover: #1d4ed8; --on-strong: #ffffff; --weak-bg: #172a4d; --weak-fg: #9cc2ff;
+      --shade: rgba(0, 0, 0, 0.6); --tint: #172a4d;
       color-scheme: dark;
     }
   }
@@ -47,25 +49,29 @@
   .lead { margin: 22px 0 0; font-size: 18px; color: var(--muted); max-width: 30em; }
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 34px; }
   .button {
-    display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 22px; border-radius: var(--radius);
     background: var(--strong); color: var(--on-strong); font-weight: 600; font-size: 16px; text-decoration: none;
-    transition: transform 0.12s ease;
+    transition: background-color 0.12s ease, transform 0.12s ease;
   }
-  .button:hover { transform: translateY(-1px); }
-  .button.ghost { background: var(--surface); color: var(--fg); border: 1px solid var(--line); }
+  .button:hover { background: var(--strong-hover); }
+  .button:active { transform: scale(0.98); }
+  .button:focus-visible, a:focus-visible { outline: 2px solid var(--strong); outline-offset: 2px; border-radius: var(--radius); }
+  .button.ghost { background: var(--weak-bg); color: var(--weak-fg); }
+  .button.ghost:hover { background: var(--weak-bg); filter: brightness(0.97); }
   .button img { width: 24px; height: 24px; }
   .hero-mark { justify-self: center; width: min(320px, 70%); }
 
   .products { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
   .card {
-    display: flex; flex-direction: column; gap: 14px; padding: 28px; border-radius: 14px; text-decoration: none;
-    background: var(--surface); border: 1px solid var(--line); transition: transform 0.12s ease, box-shadow 0.12s ease;
+    display: flex; flex-direction: column; gap: 14px; padding: 28px; border-radius: var(--radius); text-decoration: none;
+    background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 16px 40px -24px var(--shade);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 24px 60px -28px var(--shade); }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 24px 56px -24px var(--shade); }
   .card .icon { width: 56px; height: 56px; }
   .card h3 { margin: 0; font-size: 22px; letter-spacing: -0.02em; }
   .card p { margin: 0; color: var(--muted); }
-  .card .go { margin-top: auto; padding-top: 6px; font-weight: 600; font-size: 15px; }
+  .card .go { margin-top: auto; padding-top: 6px; font-weight: 600; font-size: 15px; color: var(--weak-fg); }
   .card .go::after { content: " →"; }
 
   section { padding: 88px 0; border-top: 1px solid var(--line); }
@@ -80,7 +86,7 @@
   .feature li { padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
   .feature li:first-child { border-top: 1px solid var(--line); }
   .feature li b { color: var(--fg); font-weight: 600; }
-  .shot { border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 24px 60px -24px var(--shade); overflow: hidden; background: var(--surface); }
+  .shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 24px 60px -24px var(--shade); overflow: hidden; background: var(--surface); }
 
   .account { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; }
   .account ul { margin: 0; padding: 0; list-style: none; }
