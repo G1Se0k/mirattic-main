@@ -1,6 +1,7 @@
 name: Deploy
 
-# main → the deploy host (same Mac mini as Sync / Auth). The key may only run deploy/deploy.sh there.
+# main → the deploy host. Mac mini: the key may only run deploy/deploy.sh there. Lightsail (secret
+# DEPLOY_HOST set): rsync of public/.
 on:
   push:
     branches: [main]
@@ -18,9 +19,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v4
       - name: Deploy
+        env:
+          # A secret, not a variable: this repo is public and the origin's address stays out of its logs.
+          HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
           install -m 700 -d ~/.ssh
           printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
           printf '%s\n' "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-          ssh giseok@ssh.mirattic.com "${{ github.sha }}"
+          if [ -n "$HOST" ]; then
+            # Lightsail host (Mirattic Auth docs/deployment.md "Host move"): public/ straight into Caddy's root.
+            rsync -a --delete public/ "$HOST:/var/www/mirattic/"
+            curl -fsS -o /dev/null https://mirattic.com/ && echo "deployed ${{ github.sha }}"
+          else
+            ssh giseok@ssh.mirattic.com "${{ github.sha }}"
+          fi
