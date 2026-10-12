@@ -29,6 +29,8 @@ jobs:
           printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
           printf '%s\n' "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
           if [ -n "$HOST" ]; then
+            # The secret is masked whole; an SSH / rsync error may print the host alone, so mask that too.
+            echo "::add-mask::${HOST#*@}"
             # Lightsail host (Mirattic Auth docs/deployment.md "Host move"): public/ straight into Caddy's root.
             rsync -a --delete public/ "$HOST:/var/www/mirattic/"
             curl -fsS -o /dev/null https://mirattic.com/ && echo "deployed ${{ github.sha }}"
